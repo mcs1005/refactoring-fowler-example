@@ -47,6 +47,10 @@ public class Movie {
 			break;
 		}
 	}
+	
+    public MovieType getMovieType() {
+        return _movieType;
+    }
 
 	public String getTitle() {
 		return _title;

@@ -62,5 +62,21 @@ public class VideoClubTest {
 
 		assertTrue("Calcula bien el html", salidaHTMLEsperada.equals(salidaHTML));
 	}
+	
+    @Test
+    public void testMovie() {
+        Movie m1 = new Movie("Sky Captain", 1);
+ 
+        assertEquals(m1.getPriceCode(), 1);
+        assertEquals(m1.getType(), MovieType.NEW_RELEASE);
+        System.out.print(m1.getMovieType());
+ 
+        Movie m2 = new Movie("Sky Captain", MovieType.CHILDRENS);
+        assertEquals(m2.getType(), MovieType.CHILDRENS);
+
+ 
+        Movie m3 = new Movie("Wrong movie type", 5);
+        assertNull(m3.getMovieType());
+    }
 
 }
