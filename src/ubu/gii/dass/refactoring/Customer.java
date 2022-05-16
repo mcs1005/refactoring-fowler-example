@@ -40,12 +40,12 @@ public class Customer {
 			double thisAmount = 0;
 			Rental rental = rentals.next();
 			// determine amounts for each line
-			thisAmount = rental.getCharge();
+			thisAmount = rental.getMovie().getCharge(rental);
 
 			// show figures for this rental
 			result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
 			totalAmount += thisAmount;
-			frequentRenterPoints += rental.getFrecuentRenterPoints();
+			frequentRenterPoints +=  rental.getMovie().getFrecuentRenterPoints(rental);
 		}
 		// add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";

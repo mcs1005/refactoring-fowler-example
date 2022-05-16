@@ -1,4 +1,5 @@
 package ubu.gii.dass.refactoring;
+
 /**
  * Tema Refactorizaciones
  * 
@@ -12,18 +13,13 @@ package ubu.gii.dass.refactoring;
  */
 
 public class Movie {
-	
-	public static final int CHILDRENS = 2;
-	public static final int REGULAR = 0;
-	public static final int NEW_RELEASE = 1;
-
 	private String _title;
 	private int _priceCode;
-	private MovieType _movietype;
+	private MovieType _movieType;
 
 	public Movie(String title, int priceCode) {
 		_title = title;
-		_priceCode = priceCode;
+		setPriceCode(priceCode);
 	}
 
 	public int getPriceCode() {
@@ -32,9 +28,39 @@ public class Movie {
 
 	public void setPriceCode(int arg) {
 		_priceCode = arg;
+
+		switch (arg) {
+		case MovieType.CHILDRENS:
+			_movieType = new Children();
+			break;
+
+		case MovieType.NEW_RELEASE:
+			_movieType = new NewRelease();
+			break;
+
+		case MovieType.REGULAR:
+			_movieType = new Regular();
+			break;
+
+		default:
+			_movieType = null;
+			break;
+		}
 	}
 
 	public String getTitle() {
 		return _title;
+	}
+
+	public int getType() {
+		return this._movieType.getType();
+	}
+
+	public int getFrecuentRenterPoints(Rental rental) {
+		return _movieType.getFrecuentRenterPoints(rental);
+	}
+
+	public double getCharge(Rental rental) {
+		return this._movieType.getCharge(rental);
 	}
 }
