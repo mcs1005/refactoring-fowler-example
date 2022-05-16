@@ -52,4 +52,23 @@ public class Customer {
 		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
 		return result;
 	}
+
+	public String htmlStatement(String statementString) {
+		String htmlStatementString = "";
+		String[] parts = statementString.split("\n");
+		
+		for (String part : parts) {
+			if (part.indexOf("Rental Record")> -1) {
+				part = "<H1>" + part + "</H1>";
+			} else if (part.indexOf("Amount owed") > -1 || part.indexOf("You earned") > -1) {
+				part = "<P>" + part + "</P>";
+			} else {
+				part = part.replaceFirst("\t", "");
+				part = part.replaceAll("\t", " ");
+				part = "<H2>" + part + "</H2>";
+			}
+			htmlStatementString += part;
+		}
+		return htmlStatementString;
+	}
 }
